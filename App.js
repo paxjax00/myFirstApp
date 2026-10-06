@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import React, { useState } from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
+// Composant Enfant recevant des Props
+const CustomGreeting = ({ name }) => {
+return <Text style={styles.text}>Bonjour {name} !</Text>;
+};
+// Composant Parent gérant le State
+export default function StatePropsExample() {
+const [clickCount, setClickCount] = useState(0);
+return (
+<View style={styles.container}>
+  <CustomGreeting name="Étudiant" />
+<Text style={styles.text}>Nombre de clics : {clickCount}</Text>
+<Button
+title="Incrémenter"
+onPress={() => setClickCount(clickCount + 1)}
+/>
+</View>
+);
 }
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+container: {
+padding: 20,
+alignItems: 'center',
+},
+text: {
+fontSize: 18,
+marginVertical: 8,
+},
 });
